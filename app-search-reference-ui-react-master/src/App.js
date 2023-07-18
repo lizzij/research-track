@@ -31,8 +31,6 @@ const connector = new ElasticsearchAPIConnector({
   cloud: {
     id: "POC:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyRmYzYwNjgyODUxYTE0MzQ5YTE2NTBlNjVkZGE5MjJkZCRiZjE0ZjAwZjIyYWM0NmY2YWU2ODA4NDM3MjRiNjM5Mw=="
   },
-  // apiKey: "ZjBhZ1o0a0I2S3oxZ0xKa3l0bmc6R0U0VVZjWkVSWnVYODIyOHhjY2xSdw==",
-  // index: "my-example-movies"
   apiKey: "aEVhNlo0a0I2S3oxZ0xKa090bGI6Ulc0VTAtR0hRYnlyUUYxdEhzYTNVQQ==",
   index: "*"
 });
@@ -43,9 +41,7 @@ const config = {
         weight: 3
       },
       ABSTRACT_TEXT: {},
-      // genre: {},
-      // actors: {},
-      // directors: {}
+      // TODO: add more fields.
     },
     result_fields: {
       PROJECT_TITLE: {
