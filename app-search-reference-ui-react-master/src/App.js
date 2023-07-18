@@ -79,69 +79,69 @@ const config = {
     result_fields: {
       // projects
       BUDGET_START: {
-        raw: {}
+        snippet: {}
       },
       PROJECT_TITLE: {
-        raw: {}
+        snippet: {}
       },
       ORG_NAME: {
-        raw: {}
+        snippet: {}
       },
       PI_NAMEs: {
-        raw: {}
+        snippet: {}
       },
       IC_NAME: {
-        raw: {}
+        snippet: {}
       },
       NIH_SPENDING_CATS: {
-        raw: {}
+        snippet: {}
       },
       PROJECT_TERMS: {
-        raw: {}
+        snippet: {}
       },
       TOTAL_COST: {
-        raw: {}
+        snippet: {}
       },
       ORG_COUNTRY: {
-        raw: {}
+        snippet: {}
       },
       // publications
       AUTHOR_LIST: {
-        raw: {}
+        snippet: {}
       },
       AFFILIATION: {
-        raw: {}
+        snippet: {}
       },
       JOURNAL_TITLE: {
-        raw: {}
+        snippet: {}
       },
       PUB_TITLE: {
-        raw: {}
+        snippet: {}
       },
       // abstracts
       ABSTRACT_TEXT: {
-        raw: {}
+        snippet: {}
       },
       // clinical_studies
       Study: {
-        raw: {}
+        snippet: {}
       },
       // patents
       Claims: {
-        raw: {}
+        snippet: {}
       },
       Title: {
-        raw: {}
+        snippet: {}
       },
       Inventor: {
-        raw: {}
+        snippet: {}
       },
       // clinical_trials
       source: {
-        raw: {}
+        snippet: {}
       },
       keyword: {
-        raw: {}
+        snippet: {}
       },
     },
     disjunctiveFacets: ["COUNTRY.keyword"],
@@ -192,7 +192,7 @@ const config = {
           }
         },
         url: {
-          raw: {}
+          snippet: {}
         }
       }
     },
@@ -209,7 +209,7 @@ const SORT_OPTIONS = [
     name: "Funding start date",
     value: [
       {
-        field: "BUDGET_START",
+        field: "age",
         direction: "asc"
       }
     ]
