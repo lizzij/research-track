@@ -64,7 +64,7 @@ const config = {
 
       // [ok] publications
       AUTHOR_LIST: {
-        weight: 5
+        weight: 10
       },
       AFFILIATION: {
         weight: 5
@@ -180,7 +180,7 @@ const config = {
     results: {
       resultsPerPage: 5,
       search_fields: {
-        "PI_NAMEs.suggest": {
+        "AUTHOR_LIST.suggest": {
           weight: 10
         }
       },
@@ -230,7 +230,7 @@ export default function App() {
                       autocompleteResults={{
                         linkTarget: "_blank",
                         sectionTitle: "Results",
-                        titleField: "PI_NAMEs",
+                        titleField: "AUTHOR_LIST",
                         urlField: "url",
                         shouldTrackClickThrough: true
                       }}
