@@ -209,7 +209,7 @@ const SORT_OPTIONS = [
     name: "Funding start date",
     value: [
       {
-        field: "age",
+        field: "BUDGET_START",
         direction: "asc"
       }
     ]
