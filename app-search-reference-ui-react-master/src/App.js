@@ -37,17 +37,122 @@ const connector = new ElasticsearchAPIConnector({
 const config = {
   searchQuery: {
     search_fields: {
+      // abstracts
+      ABSTRACT_TEXT: {},
+      // clinical_studies
+      Study: {},
+      // patents
+      Claims: {},
+      Title: {
+        weight: 3
+      },
+      Inventor: {
+        weight: 5
+      },
+      // projects
       PROJECT_TITLE: {
         weight: 3
       },
-      ABSTRACT_TEXT: {},
-      // TODO: add more fields.
+      ORG_NAME: {
+        weight: 5
+      },
+      PI_NAMEs: {
+        weight: 5
+      },
+      IC_NAME: {},
+      NIH_SPENDING_CATS: {},
+      PROJECT_TERMS: {},
+      // publications
+      AUTHOR_LIST: {
+        weight: 5
+      },
+      AFFILIATION: {
+        weight: 5
+      },
+      JOURNAL_TITLE: {},
+      PUB_TITLE: {},
+      // clinical_trials
+      source: {
+        weight: 5
+      },
+      sponsors: {
+        weight: 5
+      },
+      official_title: {
+        weight: 3
+      },
+      keyword: {},
+      detailed_description: {},
+      results_reference: {}
     },
     result_fields: {
+      // abstracts
+      ABSTRACT_TEXT: {
+        snippet: {}
+      },
+      // clinical_studies
+      Study: {
+        snippet: {}
+      },
+      // patents
+      Claims: {
+        snippet: {}
+      },
+      Title: {
+        snippet: {}
+      },
+      Inventor: {
+        snippet: {}
+      },
+      // projects
       PROJECT_TITLE: {
         snippet: {}
       },
-      ABSTRACT_TEXT: {
+      ORG_NAME: {
+        snippet: {}
+      },
+      PI_NAMEs: {
+        snippet: {}
+      },
+      IC_NAME: {
+        snippet: {}
+      },
+      NIH_SPENDING_CATS: {
+        snippet: {}
+      },
+      PROJECT_TERMS: {
+        snippet: {}
+      },
+      // publications
+      AUTHOR_LIST: {
+        snippet: {}
+      },
+      AFFILIATION: {
+        snippet: {}
+      },
+      JOURNAL_TITLE: {
+        snippet: {}
+      },
+      PUB_TITLE: {
+        snippet: {}
+      },
+      // clinical_trials
+      source: {
+        snippet: {}
+      },
+      sponsors: {
+        snippet: {}
+      },
+      official_title: {
+        snippet: {}
+      },
+      keyword: {
+        snippet: {}
+      },
+      detailed_description: {
+        snippet: {}
+      },
+      results_reference: {
         snippet: {}
       }
     },
