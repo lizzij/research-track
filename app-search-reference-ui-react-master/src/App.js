@@ -31,14 +31,14 @@ const connector = new ElasticsearchAPIConnector({
   cloud: {
     id: "POC:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyRmYzYwNjgyODUxYTE0MzQ5YTE2NTBlNjVkZGE5MjJkZCRiZjE0ZjAwZjIyYWM0NmY2YWU2ODA4NDM3MjRiNjM5Mw=="
   },
-  apiKey: "aEVhNlo0a0I2S3oxZ0xKa090bGI6Ulc0VTAtR0hRYnlyUUYxdEhzYTNVQQ==",
+  apiKey: "bEVhTGFva0I2S3oxZ0xKa1JkbmI6TWZubUNjcDFRMTYwLTVMcmttZHQwQQ==",
   index: "*"
 });
 const config = {
   searchQuery: {
     search_fields: {
-      // projects
-      BUDGET_START: {},
+
+      // [ok] projects
       PROJECT_TITLE: {
         weight: 3
       },
@@ -50,105 +50,103 @@ const config = {
       },
       IC_NAME: {},
       NIH_SPENDING_CATS: {},
-      PROJECT_TERMS: {},
-      TOTAL_COST: {},
-      // abstracts
+
+      // [ok] abstracts 
       ABSTRACT_TEXT: {},
-      // clinical_studies
+
+      // [ok] clinical_studies
       Study: {},
-      // patents
+
+      // [ok] patents
       Claims: {},
       Title: {},
       Inventor: {},
-      // publications
+
+      // [ok] publications
       AUTHOR_LIST: {
-        // weight: 100
+        weight: 5
       },
       AFFILIATION: {
-        weight: 10
+        weight: 5
       },
       JOURNAL_TITLE: {},
       PUB_TITLE: {},
-      COUNTRY: {},
-      // clinical_trials
-      source: {
-        snippet: {}
-      },
-      keyword: {
-        snippet: {}
-      },
+
+      // [ok] search-clinical_trials
+      source: {},
+      keyword: {},
     },
     result_fields: {
       // projects
       BUDGET_START: {
-        snippet: {}
+        raw: {}
       },
       PROJECT_TITLE: {
-        snippet: {}
+        raw: {}
       },
       ORG_NAME: {
-        snippet: {}
+        raw: {}
       },
       PI_NAMEs: {
-        snippet: {}
+        raw: {}
       },
       IC_NAME: {
-        snippet: {}
+        raw: {}
       },
       NIH_SPENDING_CATS: {
-        snippet: {}
+        raw: {}
       },
       PROJECT_TERMS: {
-        snippet: {}
+        raw: {}
       },
       TOTAL_COST: {
         raw: {}
       },
       ORG_COUNTRY: {
-        snippet: {}
+        raw: {}
       },
       // publications
       AUTHOR_LIST: {
-        snippet: {}
+        raw: {}
       },
       AFFILIATION: {
-        snippet: {}
+        raw: {}
       },
       JOURNAL_TITLE: {
-        snippet: {}
+        raw: {}
       },
       PUB_TITLE: {
-        snippet: {}
+        raw: {}
       },
       // abstracts
       ABSTRACT_TEXT: {
-        snippet: {}
+        raw: {}
       },
       // clinical_studies
       Study: {
-        snippet: {}
+        raw: {}
       },
       // patents
       Claims: {
-        snippet: {}
+        raw: {}
       },
       Title: {
-        snippet: {}
+        raw: {}
       },
       Inventor: {
-        snippet: {}
+        raw: {}
       },
       // clinical_trials
       source: {
-        snippet: {}
+        raw: {}
       },
       keyword: {
-        snippet: {}
+        raw: {}
       },
     },
-    // disjunctiveFacets: ["ORG_COUNTRY.keyword"],
+    disjunctiveFacets: ["COUNTRY.keyword"],
     facets: {
-      // "ORG_COUNTRY.keyword": { type: "value" },
+      "COUNTRY.keyword": { type: "value" },
       BUDGET_START: {
         type: "range",
         ranges: [
@@ -182,12 +180,12 @@ const config = {
     results: {
       resultsPerPage: 5,
       search_fields: {
-        "AUTHOR_LIST.suggest": {
+        "PI_NAMEs.suggest": {
           weight: 10
         }
       },
       result_fields: {
-        AUTHOR_LIST: {
+        PI_NAMEs: {
           snippet: {
             size: 100,
             fallback: true
@@ -202,6 +200,21 @@ const config = {
   apiConnector: connector,
   alwaysSearchOnInitialLoad: true
 };
+const SORT_OPTIONS = [
+  {
+    name: "Relevance",
+    value: []
+  },
+  {
+    name: "Funding start date",
+    value: [
+      {
+        field: "BUDGET_START",
+        direction: "asc"
+      }
+    ]
+  }
+];
 export default function App() {
   return (
     <SearchProvider config={config}>
@@ -217,7 +230,7 @@ export default function App() {
                       autocompleteResults={{
                         linkTarget: "_blank",
                         sectionTitle: "Results",
-                        titleField: "AUTHOR_LIST",
+                        titleField: "PI_NAMEs",
                         urlField: "url",
                         shouldTrackClickThrough: true
                       }}
@@ -227,8 +240,9 @@ export default function App() {
                   }
                   sideContent={
                     <div>
-                      {wasSearched && <Sorting label={"Sort by"} sortOptions={[]} />}
+                      {wasSearched && <Sorting label={"Sort by"} sortOptions={SORT_OPTIONS} />}
                       <Facet key={"1"} field={"BUDGET_START"} label={"funding start date"} />
+                      <Facet key={"2"} field={"COUNTRY.keyword"} label={"country"} />
                     </div>
                   }
                   bodyContent={<Results shouldTrackClickThrough={true} />}
